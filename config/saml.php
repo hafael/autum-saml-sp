@@ -6,5 +6,7 @@ return [
     'redirect_route' => 'dashboard',
     'signin_route' => 'signin',
     'inertia' => true,
-    'autum_auth_url' =>  env('IDP_URL', 'https://accounts-local.com.br/login'),
+    'slo_redirect' =>  env('SLO_REDIRECT', 'autum.com.br'),
+    'autum_acs_url' =>  env('IDP_URL', 'https://accounts-local.com.br') . '/login',
+    'autum_sls_url' =>  env('IDP_URL', 'https://accounts-local.com.br') . '/logout',
 ];

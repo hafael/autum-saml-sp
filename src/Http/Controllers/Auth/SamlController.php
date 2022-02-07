@@ -33,7 +33,12 @@ class SamlController extends BaseController
 
     protected function toDestinationIdpURL()
     {
-        return config('saml.autum_auth_url', 'https://autum.com.br/login');
+        return config('saml.autum_acs_url', 'https://autum.com.br/login');
+    }
+
+    protected function logoutIdpURL()
+    {
+        return config('saml.autum_sls_url', 'https://autum.com.br/logout') . '?return_to=' . config('saml.slo_redirect');
     }
 
     protected function fromIssuerURL()
@@ -176,6 +181,22 @@ class SamlController extends BaseController
         /** @var \Symfony\Component\HttpFoundation\RedirectResponse $httpResponse */
         return $redirectBinding->send($messageContext);
 
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        auth()->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->away($this->logoutIdpURL());
     }
 
 }

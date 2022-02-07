@@ -16,7 +16,7 @@ Route::group(['middleware' => config('fortify.middleware', ['web'])], function (
 
     Route::post('signin', '\Autum\SAML\Http\Controllers\Auth\SamlController@signin')->middleware($middlewares)->name('signin');
     Route::get('login', '\Autum\SAML\Http\Controllers\Auth\SamlController@login')->middleware($middlewares)->name('login');
-    Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+    Route::get('logout', '\Autum\SAML\Http\Controllers\Auth\SamlController@logout');
 
 });
 
