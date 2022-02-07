@@ -1,8 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Spatie\WebhookClient\Http\Controllers\WebhookController;
 
-Route::webhooks('webhook');
+Route::macro('webhooks', function (string $url, string $name = 'default') {
+    return Route::post($url, WebhookController::class)->name("webhook-client-{$name}");
+});
 
 Route::group(['middleware' => config('fortify.middleware', ['web'])], function () {
 

@@ -13,13 +13,18 @@ class AutumSamlServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         
         $this->publishes([
             __DIR__.'/../config/saml.php' => config_path('saml.php'),
             __DIR__.'/../config/webhook-client.php' => config_path('webhook-client.php'),
-        ]);
+        ], 'autum-saml-config');
+
+        $this->publishes([
+            __DIR__.'/../database/migrations' => database_path('migrations'),
+        ], 'autum-saml-migrations');
     }
 
     /**
