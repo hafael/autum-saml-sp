@@ -8,7 +8,7 @@
     "require": {
         "php": "^8.2",
         "guzzlehttp/guzzle": "^7.4",
-        "lightsaml/lightsaml": "^4.2",
+        "litesaml/lightsaml": "^4.2",
         "spatie/laravel-webhook-client": "^3.4"
     },
     "require-dev": {
